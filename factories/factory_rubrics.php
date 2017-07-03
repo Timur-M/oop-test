@@ -1,6 +1,16 @@
 <?php
 
 class Factory_rubrics {
+
+    public function get_all_rubrics(){
+        $sql = "SELECT * FROM rubrics";
+        $query = db::select_all($sql);
+        foreach ($query as $rubric){
+            $result[] = $this->get_rubric_by_id($rubric['id']);
+        }
+        return $result;
+    }
+
     public function get_rubrics_of_news($news_id){
         $sql = "SELECT rubric_id FROM rel_news_rubrics WHERE news_id=?";
         $query = db::select_all($sql, array($news_id));
