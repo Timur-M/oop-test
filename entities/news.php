@@ -5,4 +5,5 @@ class News extends Abstract_entity {
     var $header;
     var $date_create;
     var $anons;
+    var $elements;
 }

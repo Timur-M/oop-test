@@ -2,15 +2,8 @@
 
 class Factory_news {
 
-    private $registry;
-
-    public function __construct(ArrayObject $registry)
-    {
-        $this->registry = $registry;
-    }
-
     public function get_all_news(){
-        $sql = "SELECT * FROM news ORDER BY date_create DESC LIMIT 5";
+        $sql = "SELECT * FROM news";
         $query = db::select_all($sql);
         foreach ($query as $news){
             $result[] = $this->get_one_news($news['id']);
@@ -30,14 +23,16 @@ class Factory_news {
     public function get_one_news($news_id){
         $sql = "SELECT * FROM news WHERE id=?";
         $query = db::select_one($sql, array($news_id));
+        $news =  new News($query);
 
-        $result = array(
-            'news' => new News($query),
-            'user' => $this->registry['factory_users']->get_user_of_news($news_id),
-            'rubrics' => $this->registry['factory_rubrics']->get_rubrics_of_news($news_id),
-            'comments' => $this->registry['factory_comments']->get_comments_of_news($news_id)
-        );
+        // add User
+        $user = new Factory_users();
+        $news->add_element('user',$user->get_user_of_news($news_id));
 
-        return $result;
+        // add Rubrics
+        $rubrics = new Factory_rubrics();
+        $news->add_element('rubrics',$rubrics->get_rubrics_of_news($news_id));
+
+        return $news;
     }
 }

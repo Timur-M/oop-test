@@ -1,0 +1,1 @@
+<a class="uk-badge" href="/rubric/<?=$id?>"><?=$name?></a> 

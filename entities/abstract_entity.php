@@ -12,4 +12,8 @@ class Abstract_entity {
         extract(get_object_vars($this));
         include $_SERVER['DOCUMENT_ROOT'].'/templates/'.$template_file;
     }
+
+    public function add_element($element_name,$element_value){
+        $this->elements[$element_name] = $element_value;
+    }
 }
