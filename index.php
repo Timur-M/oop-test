@@ -35,6 +35,7 @@ if ($x_url[0] == ''){
 if ($x_url[0] == 'news'){
     $template->render('header.php');
     $one_news = $factory_news->get_one_news($x_url[1]);
+    $one_news = $one_news->get_all_vars();
     $template->render('all_rubrics.php',array('all_rubrics'=>$all_rubrics));
     $template->render('news_page.php',array('one_news'=>$one_news));
     $template->render('footer.php');

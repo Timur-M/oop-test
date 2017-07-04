@@ -1,9 +1,14 @@
 <div class="uk-width-5-6">
-    <?$one_news->render('one_news.php')?>
-    <?$one_news->elements['user']->render('user_card.php')?>
-    <ul>
-        <?foreach($one_news->elements['rubrics'] as $rubric){
-            $rubric->render('rubric_set.php');
+    <h1><?=$one_news['header']?></h1>
+    <div class=""><?=$one_news['date_create']?> <?$one_news['elements']['user']->render('user_card.php')?></div>
+
+    <div class="">
+        <?foreach($one_news['elements']['rubrics'] as $rubric){
+            $rubric->render('badget_rubric.php');
         }?>
-    </ul>
+    </div>
+
+    <hr>
+
+    <div class=""><?=$one_news['anons']?></div>
 </div>

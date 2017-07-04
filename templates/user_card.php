@@ -1,1 +1,1 @@
-<div class=""><?=$id?> <?=$name?></div>
+<a href="/user/<?=$id?>"><?=$name?></a>

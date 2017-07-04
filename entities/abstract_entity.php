@@ -16,4 +16,8 @@ class Abstract_entity {
     public function add_element($element_name,$element_value){
         $this->elements[$element_name] = $element_value;
     }
+
+    public function get_all_vars(){
+        return get_object_vars($this);
+    }
 }
